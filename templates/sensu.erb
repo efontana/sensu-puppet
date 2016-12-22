@@ -11,5 +11,8 @@ CLIENT_DEREGISTER_ON_STOP=true
 CLIENT_DEREGISTER_HANDLER="<%= scope.lookupvar("sensu::deregister_handler") %>"
 <% end -%>
 SERVICE_MAX_WAIT="<%= scope.lookupvar("sensu::init_stop_max_wait") %>"
+<% if ![:undef, nil].include?(scope.lookupvar("sensu::plugins_dir")) -%>
+PLUGINS_DIR="<%= scope.lookupvar("sensu::plugins_dir") %>"
+<% end -%>
 <% path = scope.lookupvar("sensu::path") -%>
 PATH=<%= [:undef, nil].include?(path) ? "$PATH" : path %>
